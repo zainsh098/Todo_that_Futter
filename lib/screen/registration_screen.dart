@@ -66,6 +66,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                    SizedBox(height: 35,),
 
 
+
+
                    const SizedBox(height: 20),
                         Text.rich(
                           TextSpan(
