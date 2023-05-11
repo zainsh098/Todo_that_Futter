@@ -19,7 +19,7 @@ class Styles {
       TextStyle(fontSize: 18, color: Colors.white.withOpacity(0.5));
   static TextStyle userInputText = const TextStyle(color: Colors.white);
 
-  static Color buttonColor = const Color.fromARGB(225, 243, 249, 252);
+  static Color buttonColor = const Color(0xFFF89B76);
   static Color buttonTextColor = Colors.black;
   static Color blueColor = const Color.fromARGB(122, 34, 185, 250);
   static ButtonStyle buttonStyle = ElevatedButton.styleFrom(

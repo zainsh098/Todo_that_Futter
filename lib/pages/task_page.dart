@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -140,10 +140,10 @@ class _TaskPageState extends State<TaskPage> {
   Widget deletePopupDialog(BuildContext context) {
     return AlertDialog(
       title: const Text("Are you sure? "),
-      content: Column(
+      content: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Icon(
               Icons.report_gmailerrorred_rounded,
               size: 60,
