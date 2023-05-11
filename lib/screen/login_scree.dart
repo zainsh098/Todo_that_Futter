@@ -75,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-           const Positioned(child: Image(image: AssetImage(Constants.shape_image),),)
+           const Positioned(child: Image(image: AssetImage(Constants.shape_image),),),
+
             ],
           )
         ),

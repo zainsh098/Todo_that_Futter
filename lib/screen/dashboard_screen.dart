@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_analog_clock/flutter_analog_clock.dart';
+import 'package:intl/intl.dart';
 import '../const.dart';
 import '../widgets/bullet.dart';
 
@@ -11,8 +14,72 @@ class DashBoardScreen extends StatefulWidget {
 }
 
 class _DashBoardScreenState extends State<DashBoardScreen> {
+
+
+  String _greeting = 'Loading...';
+
+
+
   List<String> litems = [];
   TextEditingController task = TextEditingController();
+
+  TimeOfDay currentTime = TimeOfDay.now();
+  String getFormattedDate() {
+    DateTime currentDate = DateTime.now();
+    String formattedDate = DateFormat.yMMMd().format(currentDate);
+    return formattedDate;
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchUserName();
+
+  }
+  void fetchUserName() async {
+    // Replace 'users' with the appropriate collection name in your Firestore database
+    CollectionReference usersCollection =
+    FirebaseFirestore.instance.collection('User_Signup');
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    // Replace 'userId' with the user's ID or document name in your Firestore collection
+    DocumentSnapshot userSnapshot = await usersCollection.doc(uid).get();
+
+    if (userSnapshot.exists) {
+      String userName = userSnapshot.get('name');
+      setState(() {
+        _greeting = getGreetingBasedOnTime(userName);
+      });
+    }
+  }
+
+
+
+  String getGreetingBasedOnTime(String name) {
+    var hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return 'Good Morning, $name!';
+    } else if (hour < 17) {
+      return 'Good Afternoon, $name!';
+    } else if (hour < 20) {
+      return 'Good Evening, $name!';
+    } else {
+      return 'Good Night, $name!';
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,59 +92,48 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
+
                   color: const Color.fromARGB(255, 179, 115, 87),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      SizedBox(
-                        height: 30,
+                    children:  [
+                      const SizedBox(
+                        height: 20,
                       ),
-                      Padding(
-                        padding: EdgeInsets.all(30.0),
+                       Padding(
+                        padding: const EdgeInsets.all(30.0),
                         child: Center(
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                'https://images.pexels.com/photos/6996168/pexels-photo-6996168.jpeg'),
-                            radius: 50,
+                          child: Text(
+                            _greeting,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Center(
-                        child: Text(
-                          'Welcome Oliva Grace',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w300),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
+
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        'Good Afternoon',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                ),
+
+                
                 const SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
-                const Image(
-                  image: AssetImage(Constants.clock_image),
+                Container(
+
+                  height: 160,
+
+                  child: AnalogClock(
+                    dialColor: const Color(0xFFECE6E6),
+                    dateTime:  DateTime.now(),
+                    isKeepTime: true,
+                    child: const Align(
+                      alignment: FractionalOffset(0.5, 0.75),
+                      child: Text('GMT-8'),
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,

@@ -4,6 +4,7 @@ import '../const.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String textmessage;
+  bool _isLoading=false;
   VoidCallback onTap;
     ButtonWidget({required this.textmessage, required this.onTap, super.key});
 
@@ -16,7 +17,9 @@ class ButtonWidget extends StatelessWidget {
        height: 60,
     
         decoration:  BoxDecoration(color: Constants.primaryColor, borderRadius: BorderRadius.circular(15)),
-        child: Center(child: Text(textmessage, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),),
+        child:_isLoading
+            ? CircularProgressIndicator()
+            :  Center(child: Text(textmessage, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),),
       ),
     );
   }

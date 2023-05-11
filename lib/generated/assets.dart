@@ -4,6 +4,7 @@ class Assets {
 
   static const String assetsAddtask = 'assets/addtask.png';
   static const String assetsClock = 'assets/clock.png';
+  static const String assetsGoogle = 'assets/google.png';
   static const String assetsHomepage = 'assets/homepage.png';
   static const String assetsLogin = 'assets/login.png';
   static const String assetsMobileUx = 'assets/mobile_ux_.png';
@@ -21,7 +22,6 @@ class Assets {
   static const String fontsMontserratMedium = 'assets/fonts/Montserrat-Medium.ttf';
   static const String iconsClipboard = 'assets/icons/clipboard.png';
   static const String iconsFacebook = 'assets/icons/facebook.png';
-  static const String iconsGoogle = 'assets/icons/google.png';
   static const String iconsProfile1 = 'assets/icons/profile1.png';
   static const String iconsProfile2 = 'assets/icons/profile2.png';
   static const String iconsProfile3 = 'assets/icons/profile3.png';
