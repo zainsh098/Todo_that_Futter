@@ -1,15 +1,17 @@
 
 class  Task{
-
   String taskTitle;
   String taskDate;
   String taskTime;
   String taskDetails;
-
-  Task(this.taskTitle, this.taskDate, this.taskTime, this.taskDetails,
-      this.selected);
-
   bool selected;
+
+  Task(
+      {required this.taskTitle,
+        required this.taskDate,
+        required this.taskTime,
+        required this.taskDetails,
+        required this.selected});
 
 
 

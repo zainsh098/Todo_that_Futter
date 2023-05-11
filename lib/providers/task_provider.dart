@@ -1,14 +1,11 @@
-
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import '../Models/Task.dart';
+import '../models/Task.dart';
 
 
-class TaskProvider extends ChangeNotifier
-{
+class TaskProvider extends ChangeNotifier {
   List<Task> _listOfTasks = [];
   List<Task> get listOfTasks => _listOfTasks;
   set listOfTasks(List<Task> listOfTasks) {
@@ -112,7 +109,4 @@ class TaskProvider extends ChangeNotifier
   }
 
   void getOriginalList() {}
-
-
-
 }
